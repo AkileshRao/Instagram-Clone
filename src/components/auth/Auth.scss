@@ -1,0 +1,89 @@
+.auth{
+    height: 100vh;
+    background: rgb(248, 248, 248);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .loader{
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        background: white;
+        opacity: 1;
+    }
+    .form, .auth-type{
+        border-radius: 2px;
+        background : white; 
+        padding : 1em;
+        border:1px solid rgb(226, 226, 226);
+        width: 85%;
+        margin: 0 auto;
+        max-width: 350px;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input{
+            width: 80%;
+            border: 1px solid rgb(235, 235, 235);
+            background: #f9f9f9;
+            padding: 0.8em;
+            border-radius: 2px;
+            margin: 0.1em 0;
+        }
+        button{
+            width: 87%;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            background-color: #3897f1;
+            border-radius: 2px;
+            font-weight: 600;
+            color: white;
+            border:0;
+        }
+        p{
+            font-size: 0.9em;
+        }
+        img{
+            object-fit: contain;
+            width: 200px;
+            margin: 0.4em 0;
+        }
+        .forgot-password{
+            cursor: pointer;
+            color : #3897f1;
+            font-weight: 500;
+        }
+        .signup-text{
+            text-align: center;
+            color: grey;
+            margin: 0 0 1.5em 0;
+            width: 70%;
+        }
+        .tnc{
+            width: 75%;
+            text-align: center;
+            color: grey;
+            span{
+                font-weight: 600;
+            }
+        }
+    }
+    .auth-type{
+        margin-top: 0.3em;
+        p{
+            font-size: 0.9em;
+            text-align: center;
+            span{
+                font-weight: 600;
+                color:#3897f1;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.main{
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5em;
+        border-bottom : 2px solid rgb(241, 241, 241);
+        img{
+            object-fit: contain;
+            height: 35px;
+        }
+    }
+    .loader{
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        background: white;
+        opacity: 1;
+    }
+}
