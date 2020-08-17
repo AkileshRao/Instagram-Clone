@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { auth, db } from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import './Main.scss';
 import { Menu, MenuItem } from '@material-ui/core';
+import { PostContext } from '../../state/PostProvider';
 
 function Main() {
+    const [posts, setPosts] = useContext(PostContext);
     const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -15,12 +17,6 @@ function Main() {
         auth.onAuthStateChanged((user) => {
             if (!user) history.push('/auth');
         });
-
-        // db.collection('posts').get().then(res => {
-        //     // res.forEach(doc => {
-        //     //     console.log(doc.data());
-        //     // })
-        // })
     }, []);
 
     const logOut = () => {
@@ -50,7 +46,13 @@ function Main() {
 
             <h1>Main</h1>
             <button onClick={() => addPost()}>Add Post</button>
-
+            <div>
+                {posts && posts.map((post, i) => {
+                    return (
+                        <h1 key={i}>{post.name}</h1>
+                    )
+                })}
+            </div>
 
             {/* --------------------------------------------------------------------------------- */}
 
