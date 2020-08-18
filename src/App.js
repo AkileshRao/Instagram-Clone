@@ -11,7 +11,7 @@ function App() {
         <Router>
           <Redirect path='/' exact to='/auth'></Redirect>
           <Route path='/auth' component={Auth}></Route>
-          <Route path='/main' component={Main}></Route>
+          <Route path='/home' component={Main}></Route>
         </Router>
       </div>
     </PostProvider>

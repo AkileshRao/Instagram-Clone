@@ -1,17 +1,31 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { auth, db } from '../../firebase';
+import React, { useState, useEffect } from 'react';
+import { auth } from '../../firebase';
 import { useHistory } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import './Main.scss';
 import { Menu, MenuItem } from '@material-ui/core';
-import { PostContext } from '../../state/PostProvider';
+import { Home, Search, AddAPhoto, FavoriteBorder, AccountCircle } from '@material-ui/icons';
+import { Switch, Route } from 'react-router-dom';
+import Posts from './Posts/Posts';
+import Profile from './Profile/Profile';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function Main() {
-    const [posts, setPosts] = useContext(PostContext);
     const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = React.useState(false);
+
     useEffect(() => {
         console.log("I fire");
         auth.onAuthStateChanged((user) => {
@@ -27,31 +41,22 @@ function Main() {
         }, 1000);
     }
 
-    const addPost = () => {
-        db.collection("posts").add({
-            name: "akileshrao",
-            caption: "testing",
-            img: "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/IMG_%28business%29.svg/1200px-IMG_%28business%29.svg.png"
-        }).then(doc => console.log("Doc ID : ", doc.id))
-            .catch(err => console.log(err));
-    }
-
     return (
         <div className='main'>
-
             <div className="header">
                 <img src="/inst.png" alt="instagram" />
                 <img src="/user.png" alt="user" aria-controls="simple-menu" aria-haspopup="true" onClick={(event) => setAnchorEl(event.currentTarget)} />
             </div>
-
-            <h1>Main</h1>
-            <button onClick={() => addPost()}>Add Post</button>
-            <div>
-                {posts && posts.map((post, i) => {
-                    return (
-                        <h1 key={i}>{post.name}</h1>
-                    )
-                })}
+            <Switch>
+                <Route path='/home' component={Posts} />
+                <Route path='/profile' component={Profile} />
+            </Switch>
+            <div className="footer">
+                <Home style={{ fontSize: "2em" }} />
+                <Search style={{ fontSize: "2em" }} />
+                <AddAPhoto onClick={() => setOpen(true)} style={{ fontSize: "2em" }} />
+                <FavoriteBorder style={{ fontSize: "2em" }} />
+                <AccountCircle style={{ fontSize: "2em" }} />
             </div>
 
             {/* --------------------------------------------------------------------------------- */}
@@ -76,6 +81,20 @@ function Main() {
                 width={60}
                 className='loader'
             />
+
+            <div>
+                <Dialog fullScreen open={open} onClose={() => setOpen(false)} TransitionComponent={Transition}>
+                    <AppBar style={{ position: "relative" }}>
+                        <Toolbar>
+                            <IconButton edge="start" color="inherit" onClick={() => setOpen(false)} aria-label="close">
+                                <CloseIcon />
+                            </IconButton>
+                            Add a post
+                        </Toolbar>
+                    </AppBar>
+
+                </Dialog>
+            </div>
         </div>
     )
 }

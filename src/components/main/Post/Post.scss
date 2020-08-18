@@ -1,0 +1,46 @@
+.post{
+    border:1px solid rgb(226, 226, 226);
+    border-top:0px;
+    .post__top{
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        padding: 0.5em;
+        border-top:0px;
+        border-bottom:1px solid rgb(226, 226, 226);
+
+        p{
+            font-size: 0.85em;
+        }
+    }
+    .post__mid{
+        img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            min-height: 275px;
+        }
+        .actions{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.5em;
+            align-items: center;
+            font-weight: 500;
+            height: 40px;
+            font-size: 0.85em;
+        }
+    }
+    .post__bot{
+        display: flex;
+        padding: 0 0.5em 0.5em 0.5em;
+        margin:0px !important;
+        p{
+            margin: 0.5em 0;
+            font-size: 0.85em;
+        }
+        .name{
+            font-weight: 500;
+            margin-right: 0.5em;
+        }
+    }
+}
