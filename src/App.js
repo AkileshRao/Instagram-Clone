@@ -9,9 +9,8 @@ function App() {
     <PostProvider>
       <div className="App">
         <Router>
-          <Redirect path='/' exact to='/auth'></Redirect>
           <Route path='/auth' component={Auth}></Route>
-          <Route path='/home' component={Main}></Route>
+          <Route path='/' component={Main}></Route>
         </Router>
       </div>
     </PostProvider>

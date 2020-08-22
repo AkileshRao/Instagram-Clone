@@ -10,7 +10,7 @@ export const PostProvider = props => {
         db.collection('posts').get().then(res => {
             let postsArr = [];
             res.forEach(doc => {
-                postsArr.push(doc.data());
+                postsArr.push({ id: doc.id, ...doc.data() });
             })
             setPosts(postsArr);
         })

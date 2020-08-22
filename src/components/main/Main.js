@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { auth, db, storage } from '../../firebase';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import './Main.scss';
@@ -84,16 +84,18 @@ function Main() {
                 <img src="/user.png" alt="user" aria-controls="simple-menu" aria-haspopup="true" onClick={(event) => setAnchorEl(event.currentTarget)} />
             </div>
             <Switch>
-                <Route path='/home' component={Posts} />
+                <Route exact path='/' component={Posts} />
                 <Route path='/profile' component={Profile} />
             </Switch>
             <div className="footer">
-                <Home style={{ fontSize: "2em" }} />
+                <Home onClick={() => history.push('/')} style={{ fontSize: "2em" }} />
                 <Search style={{ fontSize: "2em" }} />
                 <AddAPhoto onClick={() => setOpen(true)} style={{ fontSize: "2em" }} />
                 <FavoriteBorder style={{ fontSize: "2em" }} />
-                <AccountCircle style={{ fontSize: "2em" }} />
+                <AccountCircle onClick={() => history.push('/profile')} style={{ fontSize: "2em" }} />
             </div>
+
+
 
             {/* --------------------------------------------------------------------------------- */}
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import { AccountCircle, FavoriteBorder, CommentOutlined } from '@material-ui/icons';
+import { AccountCircle } from '@material-ui/icons';
 import './Post.scss';
-const Post = ({ name, img, caption, likes }) => {
+const Post = ({ name, img, caption, likes, id }) => {
     return (
         <div className='post'>
             <div className="post__top">
@@ -10,13 +10,6 @@ const Post = ({ name, img, caption, likes }) => {
             </div>
             <div className="post__mid">
                 <img src={img} alt="image" />
-                <div className="actions">
-                    <div style={{ display: "flex" }} >
-                        <FavoriteBorder style={{ 'fontSize': '2em', 'marginRight': '0.1em' }} />
-                        <CommentOutlined style={{ 'fontSize': '2em', 'marginTop': '0.05em' }} />
-                    </div>
-                    <p>{likes} likes</p>
-                </div>
             </div>
             <div className="post__bot">
                 <p className='name'>{name}</p>

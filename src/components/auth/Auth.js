@@ -17,7 +17,7 @@ function Auth() {
     useEffect(() => {
         setLoading(true);
         auth.onAuthStateChanged((user) => {
-            if (user) history.push('/home');
+            if (user) history.push('/');
             setLoading(false);
         })
     }, []);
